@@ -1,11 +1,3 @@
-<?php
-/**
- * User: TheCodeholic
- * Date: 2/8/2020
- * Time: 9:49 AM
- */
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,10 +8,7 @@
   <title>Document</title>
 </head>
 <body>
-<form action="" method="get">
-  <input type="text" name="keyword"
-         placeholder="Type and hit enter">
-  <button>Search</button>
-</form>
-</body>
-</html>
+<header>
+  <a href="./index.php">Home</a>
+  <a href="./about.php">About</a>
+</header>

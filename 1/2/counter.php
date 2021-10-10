@@ -1,6 +1,12 @@
 <?php
 
+session_start();
+
+$_SESSION['counter'] ??= 0;
+$_SESSION['counter']++;
+
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,9 +17,8 @@
   <title>Document</title>
 </head>
 <body>
-<form action="" method="post">
-  <input type="file" name="file"><br>
-  <button>Submit</button>
-</form>
+
+  <h1>You have visited page: <?php echo $_SESSION['counter'] ?> times</h1>
+
 </body>
 </html>
