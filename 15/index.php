@@ -1,7 +1,19 @@
 <?php
 
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=notes', 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once 'Connection.php';
+
+$connection = new Connection();
+
+$notes = $connection->getNotes();
+
+$currentNote = [
+    'title' => '',
+    'description' => '',
+];
+
+if (isset($_GET['id'])) {
+    $currentNote = $connection->getNoteById($_GET['id']);
+}
 
 ?>
 
@@ -16,24 +28,35 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 </head>
 <body>
 <div>
-    <form class="new-note" action="create.php" method="post">
+    <form class="new-note" action="./create.php" method="post">
         <label for="title"></label>
-        <input type="text" name="title" placeholder="Note title" autocomplete="off" id="title">
+        <input type="text" name="title" placeholder="Note title" autocomplete="off" id="title"
+               value="<?php echo $currentNote['title'] ?>">
         <textarea name="description" cols="30" rows="4"
-                  placeholder="Note Description" id="title"></textarea>
-        <button>New note</button>
+                  placeholder="Note Description" id="title"><?php echo $currentNote['description'] ?></textarea>
+        <button>
+            <?php if (isset($currentNote['id'])): ?>
+                Update Note
+            <?php else: ?>
+                New Note
+            <?php endif; ?>
+        </button>
     </form>
     <div class="notes">
-        <!--        <div class="note">-->
-        <!--            <div class="title">-->
-        <!--                <a href="">Sample note</a>-->
-        <!--            </div>-->
-        <!--            <div class="description">-->
-        <!--                Sample note description-->
-        <!--            </div>-->
-        <!--            <small>15/02/20 19:00:00</small>-->
-        <!--            <button class="close">X</button>-->
+        <?php foreach ($notes
+
+        as $note): ?>
+        <div class="note">
+            <div class="title">
+                <a href="?id=<?php echo $note['id'] ?>"><?php echo $note['title'] ?></a>
+            </div>
+            <div class="description">
+                <?php echo $note['description'] ?>
+            </div>
+            <small><?php echo $note['create_date'] ?></small>
+            <button class="close">X</button>
+            <?php endforeach ?>
+        </div>
     </div>
-</div>
 </body>
 </html>

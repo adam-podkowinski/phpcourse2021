@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
 }
 
 .new-note{
@@ -13,7 +13,7 @@ body {
 .new-note input,
 .new-note textarea,
 .new-note button{
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     padding: 5px 10px;
     display: block;
     width: 100%;
