@@ -55,8 +55,8 @@ if (isset($_GET['id'])) {
             </div>
             <small><?php echo $note['create_date'] ?></small>
             <button class="close">X</button>
-            <?php endforeach ?>
         </div>
+        <?php endforeach ?>
     </div>
 </body>
 </html>
